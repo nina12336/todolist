@@ -9,7 +9,7 @@ const App = () => {
     if (inputText !== "") {
       setTodoArray([...todoArray, { inputText, id: uuidv4() }]);
       setInputText("");
-      console.log(todoArray);
+      // console.log(todoArray);
     } else {
       alert("請輸入待辦事項");
     }
@@ -20,24 +20,6 @@ const App = () => {
     console.log(e.target.value);
   };
 
-  // const showTodo = () => {
-  //   todoArray.map((arr) => (
-  //     <React.Fragment>
-  //       <li key={handleKey}>{arr}</li>
-  //       <button>完成</button>
-  //       <button onClick={handleDelete}>刪除</button>
-  //     </React.Fragment>
-  //   ));
-  // };
-
-  // const handleDelete = () => {
-  //   setTodoArray(todoArray.filter((a) => a !== arr));
-  // };
-
-  // const handleKey = () => {
-  //   Math.floor(Math.random() * 100);
-  // };
-
   return (
     <div>
       <input
@@ -47,16 +29,15 @@ const App = () => {
         value={inputText}
       ></input>
       <button onClick={handleSubmit}>新增</button>
-      <p>
-        {/* {showTodo} */}
-        {todoArray.map((arr) => (
-          <React.Fragment>
-            <li>{arr}</li>
+      <ul>
+        {todoArray.map((todo) => (
+          <li key={todo.id}>
+            {todo.inputText}
             <button>完成</button>
             <button>刪除</button>
-          </React.Fragment>
+          </li>
         ))}
-      </p>
+      </ul>
     </div>
   );
 };
