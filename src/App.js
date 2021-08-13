@@ -1,25 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-function App() {
+const App = () => {
+  const [todoArray, setTodoArray] = useState([]);
+  const [inputText, setInputText] = useState("");
+
+  const handleSubmit = () => {
+    if (inputText !== "") {
+      setTodoArray([...todoArray, { inputText, id: uuidv4() }]);
+      setInputText("");
+      console.log(todoArray);
+    } else {
+      alert("請輸入待辦事項");
+    }
+  };
+
+  const handleAddTodo = (e) => {
+    setInputText(e.target.value);
+    console.log(e.target.value);
+  };
+
+  // const showTodo = () => {
+  //   todoArray.map((arr) => (
+  //     <React.Fragment>
+  //       <li key={handleKey}>{arr}</li>
+  //       <button>完成</button>
+  //       <button onClick={handleDelete}>刪除</button>
+  //     </React.Fragment>
+  //   ));
+  // };
+
+  // const handleDelete = () => {
+  //   setTodoArray(todoArray.filter((a) => a !== arr));
+  // };
+
+  // const handleKey = () => {
+  //   Math.floor(Math.random() * 100);
+  // };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        placeholder={"請輸入待辦事項"}
+        type={"text"}
+        onChange={handleAddTodo}
+        value={inputText}
+      ></input>
+      <button onClick={handleSubmit}>新增</button>
+      <p>
+        {/* {showTodo} */}
+        {todoArray.map((arr) => (
+          <React.Fragment>
+            <li>{arr}</li>
+            <button>完成</button>
+            <button>刪除</button>
+          </React.Fragment>
+        ))}
+      </p>
     </div>
   );
-}
+};
 
 export default App;
