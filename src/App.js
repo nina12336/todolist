@@ -9,7 +9,7 @@ const App = () => {
     if (inputText !== "") {
       setTodoArray([...todoArray, { inputText, id: uuidv4() }]);
       setInputText("");
-      // console.log(todoArray);
+      console.log(todoArray);
     } else {
       alert("請輸入待辦事項");
     }
@@ -18,6 +18,14 @@ const App = () => {
   const handleAddTodo = (e) => {
     setInputText(e.target.value);
     console.log(e.target.value);
+  };
+
+  const handleDelete = (target) => {
+    const result = todoArray.filter((t) => {
+      const b = t.id !== target;
+      return b;
+    });
+    setTodoArray(result);
   };
 
   return (
@@ -34,7 +42,14 @@ const App = () => {
           <li key={todo.id}>
             {todo.inputText}
             <button>完成</button>
-            <button>刪除</button>
+            <button
+              onClick={() => {
+                console.log("onClick");
+                handleDelete(todo.id);
+              }}
+            >
+              刪除
+            </button>
           </li>
         ))}
       </ul>
