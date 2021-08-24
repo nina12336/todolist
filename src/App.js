@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import "./styles/style.css";
 
 const App = () => {
   const [todoArray, setTodoArray] = useState([]);
   const [inputText, setInputText] = useState("");
+  const [controlClassName, setControlClassName] = useState("");
 
   const handleSubmit = () => {
     if (inputText !== "") {
@@ -28,6 +30,10 @@ const App = () => {
     setTodoArray(result);
   };
 
+  const handleClassName = (keyName) => {
+    setControlClassName(keyName);
+  };
+
   return (
     <div>
       <input
@@ -39,12 +45,21 @@ const App = () => {
       <button onClick={handleSubmit}>新增</button>
       <ul>
         {todoArray.map((todo) => (
-          <li key={todo.id}>
+          <li
+            key={todo.id}
+            className={controlClassName === todo.id ? "finish" : "notYet"}
+          >
             {todo.inputText}
-            <button>完成</button>
             <button
               onClick={() => {
-                console.log("onClick");
+                handleClassName(todo.id);
+              }}
+            >
+              完成
+            </button>
+            <button
+              onClick={() => {
+                // console.log("onClick");
                 handleDelete(todo.id);
               }}
             >
