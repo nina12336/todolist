@@ -5,11 +5,10 @@ import "./styles/style.css";
 const App = () => {
   const [todoArray, setTodoArray] = useState([]);
   const [inputText, setInputText] = useState("");
-  const [controlClassName, setControlClassName] = useState("");
 
   const handleSubmit = () => {
     if (inputText !== "") {
-      setTodoArray([...todoArray, { inputText, id: uuidv4() }]);
+      setTodoArray([...todoArray, { inputText, id: uuidv4(), state: false }]);
       setInputText("");
       console.log(todoArray);
     } else {
@@ -27,11 +26,22 @@ const App = () => {
       const b = t.id !== target;
       return b;
     });
+    console.log(result);
     setTodoArray(result);
   };
 
-  const handleClassName = (keyName) => {
-    setControlClassName(keyName);
+  const handleFinish = (c) => {
+    const newTodoArray = [];
+    for (var i = 0; i < todoArray.length; i++) {
+      if (c === todoArray[i].id) {
+        todoArray[i].state = true;
+        newTodoArray.push(todoArray[i]);
+      } else {
+        newTodoArray.push(todoArray[i]);
+      }
+      // console.log(c);
+    }
+    setTodoArray(newTodoArray);
   };
 
   return (
@@ -47,12 +57,12 @@ const App = () => {
         {todoArray.map((todo) => (
           <li
             key={todo.id}
-            className={controlClassName === todo.id ? "finish" : "notYet"}
+            className={todo.state === true ? "finish" : "notYet"}
           >
             {todo.inputText}
             <button
               onClick={() => {
-                handleClassName(todo.id);
+                handleFinish(todo.id);
               }}
             >
               完成
