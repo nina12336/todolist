@@ -45,14 +45,19 @@ const App = () => {
   };
 
   return (
-    <div>
-      <input
-        placeholder={"請輸入待辦事項"}
-        type={"text"}
-        onChange={handleAddTodo}
-        value={inputText}
-      ></input>
-      <button onClick={handleSubmit}>新增</button>
+    <div className={"body"}>
+      <div className={"title"}>
+        <h1>Todo list</h1>
+      </div>
+      <div className={"inputArea"}>
+        <input
+          placeholder={"請輸入待辦事項"}
+          type={"text"}
+          onChange={handleAddTodo}
+          value={inputText}
+        ></input>
+        <button onClick={handleSubmit}>新增</button>
+      </div>
       <ul>
         {todoArray.map((todo) => (
           <li
