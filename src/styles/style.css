@@ -54,6 +54,7 @@
   padding: 10px;
   background-color: #93A8AC;
   color: white;
+  border-radius: 10px;
 }
 
 .inputArea ::-webkit-input-placeholder {
@@ -84,9 +85,40 @@
   color: white;
   font-size: 15px;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .finish {
   text-decoration: line-through;
+}
+
+.todoListItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.todoListItem li {
+  font-size: 25px;
+  margin: 15px;
+  color: #9B6A6C;
+}
+
+.todoListItem button {
+  width: 7vw;
+  height: 4vh;
+  margin: 0 5px;
+  border: none;
+  background-color: #E2B4BD;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 10px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -58,31 +58,33 @@ const App = () => {
         ></input>
         <button onClick={handleSubmit}>新增</button>
       </div>
-      <ul>
-        {todoArray.map((todo) => (
-          <li
-            key={todo.id}
-            className={todo.state === true ? "finish" : "notYet"}
-          >
-            {todo.inputText}
-            <button
-              onClick={() => {
-                handleFinish(todo.id);
-              }}
+      <div className="todoListItem">
+        <ul>
+          {todoArray.map((todo) => (
+            <li
+              key={todo.id}
+              className={todo.state === true ? "finish" : "notYet"}
             >
-              完成
-            </button>
-            <button
-              onClick={() => {
-                // console.log("onClick");
-                handleDelete(todo.id);
-              }}
-            >
-              刪除
-            </button>
-          </li>
-        ))}
-      </ul>
+              {todo.inputText}
+              <button
+                onClick={() => {
+                  handleFinish(todo.id);
+                }}
+              >
+                完成
+              </button>
+              <button
+                onClick={() => {
+                  // console.log("onClick");
+                  handleDelete(todo.id);
+                }}
+              >
+                刪除
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
