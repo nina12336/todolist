@@ -1,7 +1,7 @@
 import React from "react";
 import TodoButton from "./TodoButton";
 
-function TodoItem({ todoArray, setTodoArray, todo }) {
+function TodoItem({ todoArray, handleDelete, handleFinish }) {
   return (
     <ul>
       {todoArray.map((todo) => (
@@ -11,8 +11,8 @@ function TodoItem({ todoArray, setTodoArray, todo }) {
           <div>
             <TodoButton
               todo={todo}
-              todoArray={todoArray}
-              setTodoArray={setTodoArray}
+              handleDelete={handleDelete}
+              handleFinish={handleFinish}
             />
           </div>
         </li>
