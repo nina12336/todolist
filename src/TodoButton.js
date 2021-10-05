@@ -1,22 +1,9 @@
 import React from "react";
 
-function TodoButton({ handleDelete, handleFinish, todo }) {
+function TodoButton({ handleClick, title }) {
   return (
     <div>
-      <button
-        onClick={() => {
-          handleFinish(todo.id);
-        }}
-      >
-        完成
-      </button>
-      <button
-        onClick={() => {
-          handleDelete(todo.id);
-        }}
-      >
-        刪除
-      </button>
+      <button onClick={handleClick}>{title}</button>
     </div>
   );
 }

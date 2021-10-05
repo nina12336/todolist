@@ -20,27 +20,6 @@ const App = () => {
     setInputText(e.target.value);
   };
 
-  const handleDelete = (target) => {
-    const result = todoArray.filter((t) => {
-      const b = t.id !== target;
-      return b;
-    });
-    setTodoArray(result);
-  };
-
-  const handleFinish = (c) => {
-    const newTodoArray = [];
-    for (var i = 0; i < todoArray.length; i++) {
-      if (c === todoArray[i].id) {
-        todoArray[i].state = true;
-        newTodoArray.push(todoArray[i]);
-      } else {
-        newTodoArray.push(todoArray[i]);
-      }
-    }
-    setTodoArray(newTodoArray);
-  };
-
   return (
     <div className="body">
       <div className="title">
@@ -56,12 +35,7 @@ const App = () => {
         <button onClick={handleSubmit}>新增</button>
       </div>
       <div className="todoListItem">
-        <TodoItem
-          todoArray={todoArray}
-          setTodoArray={setTodoArray}
-          handleDelete={handleDelete}
-          handleFinish={handleFinish}
-        />
+        <TodoItem todoArray={todoArray} setTodoArray={setTodoArray} />
       </div>
     </div>
   );
