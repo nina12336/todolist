@@ -1,7 +1,7 @@
 import React from "react";
 import TodoButton from "./TodoButton";
 
-function TodoItem({ todoArray, setTodoArray }) {
+function TodoItem({ todoArray, setTodoArray, todo }) {
   const handleDelete = (target) => {
     const result = todoArray.filter((t) => {
       const b = t.id !== target;
@@ -23,28 +23,24 @@ function TodoItem({ todoArray, setTodoArray }) {
     setTodoArray(newTodoArray);
   };
   return (
-    <ul>
-      {todoArray.map((todo) => (
-        <li key={todo.id} className={todo.state === true ? "finish" : "notYet"}>
-          {todo.inputText}
+    <li key={todo.id} className={todo.state === true ? "finish" : "notYet"}>
+      {todo.inputText}
 
-          <div>
-            <TodoButton
-              handleClick={() => {
-                handleFinish(todo.id);
-              }}
-              title={"完成"}
-            />
-            <TodoButton
-              handleClick={() => {
-                handleDelete(todo.id);
-              }}
-              title={"刪除"}
-            />
-          </div>
-        </li>
-      ))}
-    </ul>
+      <div>
+        <TodoButton
+          handleClick={() => {
+            handleFinish(todo.id);
+          }}
+          title={"完成"}
+        />
+        <TodoButton
+          handleClick={() => {
+            handleDelete(todo.id);
+          }}
+          title={"刪除"}
+        />
+      </div>
+    </li>
   );
 }
 

@@ -35,7 +35,15 @@ const App = () => {
         <button onClick={handleSubmit}>新增</button>
       </div>
       <div className="todoListItem">
-        <TodoItem todoArray={todoArray} setTodoArray={setTodoArray} />
+        <ul>
+          {todoArray.map((todo) => (
+            <TodoItem
+              todoArray={todoArray}
+              setTodoArray={setTodoArray}
+              todo={todo}
+            />
+          ))}
+        </ul>
       </div>
     </div>
   );
