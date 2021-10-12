@@ -11,33 +11,60 @@ const App = () => {
     if (inputText !== "") {
       setTodoArray([...todoArray, { inputText, id: uuidv4(), state: false }]);
       setInputText("");
-      console.log(todoArray);
     } else {
       alert("請輸入待辦事項");
     }
   };
 
-  const handleAddTodo = (e) => {
-    setInputText(e.target.value);
-    console.log(e.target.value);
+  const handleAddTodo = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const handleDelete = (id) => {
+    const result = todoArray.filter((t) => {
+      const b = t.id !== id;
+      return b;
+    });
+    setTodoArray(result);
+  };
+
+  const handleFinish = (id) => {
+    const newTodoArray = [];
+    for (let i = 0; i < todoArray.length; i++) {
+      if (id === todoArray[i].id) {
+        todoArray[i].state = true;
+        newTodoArray.push(todoArray[i]);
+      } else {
+        newTodoArray.push(todoArray[i]);
+      }
+    }
+    setTodoArray(newTodoArray);
   };
 
   return (
-    <div className={"body"}>
-      <div className={"title"}>
+    <div className="body">
+      <div className="title">
         <h1>Todo list</h1>
       </div>
-      <div className={"inputArea"}>
+      <div className="inputArea">
         <input
-          placeholder={"請輸入待辦事項"}
-          type={"text"}
+          placeholder="請輸入待辦事項"
+          type="text"
           onChange={handleAddTodo}
           value={inputText}
-        ></input>
+        />
         <button onClick={handleSubmit}>新增</button>
       </div>
       <div className="todoListItem">
-        <TodoItem todoArray={todoArray} setTodoArray={setTodoArray} />
+        <ul>
+          {todoArray.map((todo) => (
+            <TodoItem
+              handleFinish={handleFinish}
+              handleDelete={handleDelete}
+              todo={todo}
+            />
+          ))}
+        </ul>
       </div>
     </div>
   );

@@ -1,23 +1,24 @@
 import React from "react";
 import TodoButton from "./TodoButton";
 
-function TodoItem({ todoArray, setTodoArray, todo }) {
+function TodoItem({ handleDelete, handleFinish, todo }) {
   return (
-    <ul>
-      {todoArray.map((todo) => (
-        <li key={todo.id} className={todo.state === true ? "finish" : "notYet"}>
-          {todo.inputText}
+    <li key={todo.id} className={todo.state === true ? "finish" : "notYet"}>
+      {todo.inputText}
 
-          <div>
-            <TodoButton
-              todo={todo}
-              todoArray={todoArray}
-              setTodoArray={setTodoArray}
-            />
-          </div>
-        </li>
-      ))}
-    </ul>
+      <TodoButton
+        handleClick={() => {
+          handleFinish(todo.id);
+        }}
+        title="完成"
+      />
+      <TodoButton
+        handleClick={() => {
+          handleDelete(todo.id);
+        }}
+        title="刪除"
+      />
+    </li>
   );
 }
 
