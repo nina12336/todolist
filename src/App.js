@@ -16,8 +16,29 @@ const App = () => {
     }
   };
 
-  const handleAddTodo = (e) => {
-    setInputText(e.target.value);
+  const handleAddTodo = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const handleDelete = (id) => {
+    const result = todoArray.filter((t) => {
+      const b = t.id !== id;
+      return b;
+    });
+    setTodoArray(result);
+  };
+
+  const handleFinish = (id) => {
+    const newTodoArray = [];
+    for (let i = 0; i < todoArray.length; i++) {
+      if (id === todoArray[i].id) {
+        todoArray[i].state = true;
+        newTodoArray.push(todoArray[i]);
+      } else {
+        newTodoArray.push(todoArray[i]);
+      }
+    }
+    setTodoArray(newTodoArray);
   };
 
   return (
@@ -27,7 +48,7 @@ const App = () => {
       </div>
       <div className="inputArea">
         <input
-          placeholder={"請輸入待辦事項"}
+          placeholder="請輸入待辦事項"
           type="text"
           onChange={handleAddTodo}
           value={inputText}
@@ -38,8 +59,8 @@ const App = () => {
         <ul>
           {todoArray.map((todo) => (
             <TodoItem
-              todoArray={todoArray}
-              setTodoArray={setTodoArray}
+              handleFinish={handleFinish}
+              handleDelete={handleDelete}
               todo={todo}
             />
           ))}
