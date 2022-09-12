@@ -1,3 +1,19 @@
+# todo list
+使用React製作todo list
+
+<img src="https://github.com/nina12336/todolist/blob/main/readMe_photo/todolist_%E7%95%AB%E9%9D%A2.png"  width="600px" />
+
+## 關於這個專案
+
+**技術棧**
+- React
+- HTML
+- SCSS
+
+**特殊的元素**
+- 可精確指定操作目標，縱使事項內容一樣也不會造成誤刪或標記。此功能使用uuid這個API，透過uuid可動態且隨機給予新增事項一組特殊的id，判斷操作對象是由id來判別。
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,4 +84,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# todolist
+
